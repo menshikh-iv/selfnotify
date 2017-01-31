@@ -12,9 +12,14 @@ class Notifier(object):
         self._chat_id = chat_id
         self._token = token
 
-    def _notify(self, message):
+    def notify(self, message, with_ts=True):
+        text = message
+
+        if with_ts:
+            text = "[{}] - {}".format(Notifier._now(), message)
+
         params = {"chat_id": self._chat_id,
-                  "text": message}
+                  "text": text}
         return urllib.urlopen(Notifier._url_pattern.format(token=self._token,
                                                            params=urllib.urlencode(params)))
 
@@ -23,13 +28,13 @@ class Notifier(object):
         return datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
     def __enter__(self):
-        self._notify("[{}] Start".format(Notifier._now()))
+        self.notify("Start")
 
     def __exit__(self, exc_type, exc_value, exc_traceback):
         if exc_type:
             exc_lines = tb.format_exception(exc_type, exc_value, exc_traceback)
-            mess = "[{}] Something goes wrong\n".format(Notifier._now())
+            mess = "Something goes wrong\n"
             mess += "\n{}\n".format("\n".join(exc_lines))
-            self._notify(mess)
+            self.notify(mess)
         else:
-            self._notify("[{}] End".format(Notifier._now()))
+            self.notify("End".format(Notifier._now()))
