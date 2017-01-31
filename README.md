@@ -8,10 +8,9 @@ git clone -b basic-implementation git@github.com:menshikh-iv/selfnotify.git
 pip install --user selfnotify/
 ```
 
-If you import selfnotify, you'll get an error
-```
-python -c "import selfnotify"
+If you import lib `python -c "import selfnotify"`, you'll get an error
 
+```python
 Traceback (most recent call last):
   File "<string>", line 1, in <module>
   File "selfnotify/__init__.py", line 21, in <module>
@@ -21,14 +20,12 @@ AssertionError: You should write bot `token` to ~/.selfnotify/selfnotify.json
 Because you need `token` and `chat_id`.
 
 1. Go to [@BotFather](https://telegram.me/botfather), create bot and write `token` to `~/.selfnotify/selfnotify.json`
-
 ![BotFather dialog](https://cdn-images-1.medium.com/max/800/1*xbpFyoKNP1jNBLlBguTS_g.png)
-
 2. Go to [@get_id_bot](https://telegram.me/get_id_bot), get your  `chat_id` and write it to `~/.selfnotify/selfnotify.json`
 
 Now, you can use library
 
-```
+```python
 from selfnotify import Notifier
 from time import sleep
 
