@@ -10,6 +10,8 @@ pip install --user selfnotify/
 
 If you import selfnotify, you'll get an error
 ```
+python -c "import selfnotify"
+
 Traceback (most recent call last):
   File "<string>", line 1, in <module>
   File "selfnotify/__init__.py", line 21, in <module>
