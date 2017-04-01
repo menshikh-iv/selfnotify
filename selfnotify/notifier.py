@@ -16,12 +16,15 @@ class Notifier(object):
         text = message
 
         if with_ts:
-            text = "[{}] - {}".format(Notifier._now(), message)
+            text = u"[{}] - {}".format(Notifier._now(), message)
 
         params = {"chat_id": self._chat_id,
-                  "text": text}
+                  "text": text.encode('utf-8', 'strict'),
+                  'disable_web_page_preview': True}
+
+        message = urllib.urlencode(params)
         return urllib.urlopen(Notifier._url_pattern.format(token=self._token,
-                                                           params=urllib.urlencode(params)))
+                                                           params=message))
 
     @staticmethod
     def _now():
