@@ -20,7 +20,7 @@ CHAT_ID = os.environ.get(_ENVIRON_CHAT_ID_KEY, None)
 
 try:
     CHAT_ID = int(CHAT_ID)
-except ValueError:
+except (TypeError, ValueError):
     CHAT_ID = None
 
 
