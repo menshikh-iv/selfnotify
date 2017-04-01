@@ -26,8 +26,9 @@ class Notifier(object):
         params = {"chat_id": self._chat_id,
                   "text": text.encode('utf8'),
                   "parse_mode": 'Markdown'}
+        message = urllib.urlencode(params)
         return urllib.urlopen(Notifier._url_pattern.format(token=self._token,
-                                                           params=urllib.urlencode(params)))
+                                                           params=message))
 
     @staticmethod
     def _now():
