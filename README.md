@@ -4,7 +4,7 @@ Send notification from python to you through your telegram bot
 # Installation
 Clone branch & install package
 ```
-git clone -b basic-implementation git@github.com:menshikh-iv/selfnotify.git
+git clone git@github.com:menshikh-iv/selfnotify.git
 pip install selfnotify/
 ```
 
