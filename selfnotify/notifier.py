@@ -1,11 +1,17 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
 import urllib
-import urllib.parse
-import urllib.request
 import datetime
 import traceback as tb
 from . import CHAT_ID, TOKEN
+
+try:
+    from urllib import urlencode
+    from urllib import urlopen
+except ImportError:
+    from urllib.parse import urlencode
+    from urllib.request import urlopen
+    
 
 
 class Notifier(object):
@@ -28,8 +34,8 @@ class Notifier(object):
         params = {"chat_id": self._chat_id,
                   "text": text.encode('utf8'),
                   "parse_mode": 'Markdown'}
-        message = urllib.parse.urlencode(params)
-        return urllib.request.urlopen(Notifier._url_pattern.format(token=self._token,
+        message = urlencode(params)
+        return urlopen(Notifier._url_pattern.format(token=self._token,
                                                            params=message))
 
     @staticmethod
