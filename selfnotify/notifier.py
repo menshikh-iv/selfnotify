@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
 import urllib
-import urllib.parse
-import urllib.request
 import datetime
 import traceback as tb
 from . import CHAT_ID, TOKEN
